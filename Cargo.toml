@@ -1,0 +1,20 @@
+[workspace]
+members = ["lark-webhook-notify", "lark-webhook-notify-cli"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+homepage = "https://github.com/BobAnkh/lark-webhook-notify-rs"
+repository = "https://github.com/BobAnkh/lark-webhook-notify-rs"
+license = "Apache-2.0"
+readme = "README.md"
+description = "Send rich notification cards to Lark (Feishu) bots via webhooks"
+keywords = ["lark", "feishu", "webhook", "notification", "bot"]
+categories = [
+  "api-bindings",
+  "web-programming",
+  "command-line-utilities",
+  "data-structures",
+  "development-tools",
+]
