@@ -15,7 +15,7 @@ name = "lark-webhook-notify"
 path = "src/main.rs"
 
 [dependencies]
-lark-webhook-notify = { path = "../lark-webhook-notify", version = "0.1.0" }
+lark-webhook-notify = { path = "../lark-webhook-notify", version = "0.1.1" }
 clap = { version = "4", features = ["derive"] }
 serde_json = "1"
 
