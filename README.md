@@ -1,9 +1,9 @@
 # lark-webhook-notify
 
-[![github-repo](https://img.shields.io/badge/github-BobAnkh/lark-webhook-notify-rs-f5dc23?logo=github)](https://github.com/BobAnkh/lark-webhook-notify-rs)
+[![github-repo](https://img.shields.io/badge/github-BobAnkh/lark--webhook--notify--rs-f5dc23?logo=github)](https://github.com/BobAnkh/lark-webhook-notify-rs)
 [![crates.io/lark-webhook-notify](https://img.shields.io/crates/v/lark-webhook-notify.svg?logo=rust&label=lark-webhook-notify)](https://crates.io/crates/lark-webhook-notify)
 [![crates.io/lark-webhook-notify-cli](https://img.shields.io/crates/v/lark-webhook-notify-cli.svg?logo=rust&label=lark-webhook-notify-cli)](https://crates.io/crates/lark-webhook-notify-cli)
-[![docs.rs](https://img.shields.io/badge/docs.rs-lark-webhook-notify-34A853?logo=docsdotrs)](https://docs.rs/lark-webhook-notify)
+[![docs.rs](https://img.shields.io/badge/docs.rs-lark--webhook--notify-34A853?logo=docsdotrs)](https://docs.rs/lark-webhook-notify)
 [![LICENSE Apache-2.0](https://img.shields.io/github/license/BobAnkh/lark-webhook-notify-rs?logo=Apache)](https://github.com/BobAnkh/lark-webhook-notify-rs/blob/main/LICENSE)
 
 A Rust library for sending rich notification cards to [Lark (Feishu)](https://www.feishu.cn) bots via webhooks.
