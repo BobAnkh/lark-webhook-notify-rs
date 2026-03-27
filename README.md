@@ -1,6 +1,12 @@
 # lark-webhook-notify
 
-A Rust library for sending rich notification cards to [Lark (Feishu)](https://www.feishu.cn) group bots via incoming webhooks.
+[![github-repo](https://img.shields.io/badge/github-BobAnkh/lark-webhook-notify-rs-f5dc23?logo=github)](https://github.com/BobAnkh/lark-webhook-notify-rs)
+[![crates.io/lark-webhook-notify](https://img.shields.io/crates/v/lark-webhook-notify.svg?logo=rust&label=lark-webhook-notify)](https://crates.io/crates/lark-webhook-notify)
+[![crates.io/lark-webhook-notify-cli](https://img.shields.io/crates/v/lark-webhook-notify-cli.svg?logo=rust&label=lark-webhook-notify-cli)](https://crates.io/crates/lark-webhook-notify-cli)
+[![docs.rs](https://img.shields.io/badge/docs.rs-lark-webhook-notify-34A853?logo=docsdotrs)](https://docs.rs/lark-webhook-notify)
+[![LICENSE Apache-2.0](https://img.shields.io/github/license/BobAnkh/lark-webhook-notify-rs?logo=Apache)](https://github.com/BobAnkh/lark-webhook-notify-rs/blob/main/LICENSE)
+
+A Rust library for sending rich notification cards to [Lark (Feishu)](https://www.feishu.cn) bots via webhooks.
 
 Send structured cards for CI/CD pipelines, job status, alerts, and custom notifications — with built-in Chinese/English translations, HMAC-SHA256 request signing, and a fluent card builder API.
 
@@ -44,13 +50,14 @@ fn main() -> lark_webhook_notify::Result<()> {
 
 Credentials are loaded in priority order (highest wins):
 
-| Source | Fields |
-|--------|--------|
-| Direct params to `LarkWebhookSettings::load` | `webhook_url`, `webhook_secret` |
-| Environment variables | `LARK_WEBHOOK_URL`, `LARK_WEBHOOK_SECRET` |
-| TOML file (`lark_webhook.toml` or custom path) | `webhook_url`, `webhook_secret` |
+| Source                                         | Fields                                    |
+| ---------------------------------------------- | ----------------------------------------- |
+| Direct params to `LarkWebhookSettings::load`   | `webhook_url`, `webhook_secret`           |
+| Environment variables                          | `LARK_WEBHOOK_URL`, `LARK_WEBHOOK_SECRET` |
+| TOML file (`lark_webhook.toml` or custom path) | `webhook_url`, `webhook_secret`           |
 
 Example `lark_webhook.toml`:
+
 ```toml
 webhook_url    = "https://open.feishu.cn/open-apis/bot/v2/hook/..."
 webhook_secret = "your_signing_secret"
@@ -133,12 +140,12 @@ notifier.send_template(&card)?;
 
 ### Other workflow notifications
 
-| Function | Header color | Use case |
-|----------|-------------|----------|
-| `config_upload_complete` | Green | Config/file upload finished |
-| `result_collection_start` | Wathet | Result gathering started |
-| `result_collection_complete` | Green | Result gathering finished |
-| `comparison_complete` | Orange | Dataset comparison done |
+| Function                     | Header color | Use case                    |
+| ---------------------------- | ------------ | --------------------------- |
+| `config_upload_complete`     | Green        | Config/file upload finished |
+| `result_collection_start`    | Wathet       | Result gathering started    |
+| `result_collection_complete` | Green        | Result gathering finished   |
+| `comparison_complete`        | Orange       | Dataset comparison done     |
 
 ## High-Level Template Structs
 
@@ -166,7 +173,7 @@ Available template structs: `SimpleMessageTemplate`, `AlertTemplate`, `LegacyTas
 
 For full control, use the fluent `CardBuilder`:
 
-```rust
+````rust
 use lark_webhook_notify::{CardBuilder, ColorTheme, TextAlign, TextSize};
 
 let card = CardBuilder::new()
@@ -180,30 +187,30 @@ let card = CardBuilder::new()
     .build();
 
 notifier.send_template(&card)?;
-```
+````
 
 ### Builder methods
 
-| Method | Description |
-|--------|-------------|
-| `.header(title, status, color, subtitle)` | Card header. `color = None` auto-detects from `status` text |
-| `.markdown(content, align, size)` | Markdown text block |
-| `.metadata(label, value)` | Single `**Label:** value` line |
-| `.metadata_block(&[("Label", "val")])` | Multiple metadata lines in one block |
-| `.columns()` / `.column(...)` / `.end_columns()` | Multi-column layout |
-| `.collapsible(title, content, expanded)` | Collapsible panel |
-| `.divider()` | Horizontal rule |
-| `.add_block(block)` | Add any `impl Into<serde_json::Value>` block directly |
+| Method                                           | Description                                                 |
+| ------------------------------------------------ | ----------------------------------------------------------- |
+| `.header(title, status, color, subtitle)`        | Card header. `color = None` auto-detects from `status` text |
+| `.markdown(content, align, size)`                | Markdown text block                                         |
+| `.metadata(label, value)`                        | Single `**Label:** value` line                              |
+| `.metadata_block(&[("Label", "val")])`           | Multiple metadata lines in one block                        |
+| `.columns()` / `.column(...)` / `.end_columns()` | Multi-column layout                                         |
+| `.collapsible(title, content, expanded)`         | Collapsible panel                                           |
+| `.divider()`                                     | Horizontal rule                                             |
+| `.add_block(block)`                              | Add any `impl Into<serde_json::Value>` block directly       |
 
 Auto color detection from `status`:
 
-| Status text | Color |
-|-------------|-------|
+| Status text                | Color               |
+| -------------------------- | ------------------- |
 | `"running"`, `"submitted"` | Wathet (light blue) |
-| `"success"`, `"completed"` | Green |
-| `"failed"`, `"error"` | Red |
-| `"warning"` | Orange |
-| anything else | Blue |
+| `"success"`, `"completed"` | Green               |
+| `"failed"`, `"error"`      | Red                 |
+| `"warning"`                | Orange              |
+| anything else              | Blue                |
 
 ## Language Support
 
