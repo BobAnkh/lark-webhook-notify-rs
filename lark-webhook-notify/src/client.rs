@@ -1,6 +1,6 @@
 use base64::Engine;
 use hmac::{Hmac, Mac};
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 use sha2::Sha256;
 
 use crate::config::LarkWebhookSettings;
@@ -114,15 +114,15 @@ impl LarkWebhookNotifier {
     fn send_payload(&self, payload: Value) -> Result<Value> {
         let resp = self.client.post(&self.webhook_url).json(&payload).send()?;
         let resp_data: Value = resp.error_for_status()?.json()?;
-        if let Some(code) = resp_data.get("code").and_then(|c| c.as_i64()) {
-            if code != 0 {
-                let message = resp_data
-                    .get("msg")
-                    .and_then(|m| m.as_str())
-                    .unwrap_or("unknown error")
-                    .to_owned();
-                return Err(LarkWebhookError::ApiError { code, message });
-            }
+        if let Some(code) = resp_data.get("code").and_then(|c| c.as_i64())
+            && code != 0
+        {
+            let message = resp_data
+                .get("msg")
+                .and_then(|m| m.as_str())
+                .unwrap_or("unknown error")
+                .to_owned();
+            return Err(LarkWebhookError::ApiError { code, message });
         }
         Ok(resp_data)
     }

@@ -18,7 +18,7 @@
 //! }.into();
 //! ```
 
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 
 /// Horizontal text alignment for markdown blocks.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]

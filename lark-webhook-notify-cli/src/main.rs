@@ -1,8 +1,8 @@
 use clap::{Parser, Subcommand};
 use lark_webhook_notify::{
-    send_alert, send_simple_message, send_task_failure, send_task_notification, send_task_result,
-    send_task_start, CardContent, ColorTheme, LanguageCode, LarkWebhookNotifier,
-    LarkWebhookSettings, LegacyTaskTemplate, RawContentTemplate, SeverityLevel,
+    CardContent, ColorTheme, LanguageCode, LarkWebhookNotifier, LarkWebhookSettings,
+    LegacyTaskTemplate, RawContentTemplate, SeverityLevel, send_alert, send_simple_message,
+    send_task_failure, send_task_notification, send_task_result, send_task_start,
 };
 
 #[derive(Parser)]

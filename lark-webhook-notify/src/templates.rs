@@ -458,11 +458,13 @@ impl LarkTemplate for StartTaskTemplate {
             title: self.t("task_notification"),
             template: "wathet".into(),
             subtitle: Some("".into()),
-            text_tag_list: Some(vec![TextTag {
-                text: self.t("running"),
-                color: "wathet".into(),
-            }
-            .into()]),
+            text_tag_list: Some(vec![
+                TextTag {
+                    text: self.t("running"),
+                    color: "wathet".into(),
+                }
+                .into(),
+            ]),
             padding: Some("12px 8px 12px 8px".into()),
         }
         .into();
@@ -547,11 +549,13 @@ impl LarkTemplate for ReportTaskResultTemplate {
             title: card_title.into(),
             template: "green".into(),
             subtitle: Some("".into()),
-            text_tag_list: Some(vec![TextTag {
-                text: self.t("success"),
-                color: "green".into(),
-            }
-            .into()]),
+            text_tag_list: Some(vec![
+                TextTag {
+                    text: self.t("success"),
+                    color: "green".into(),
+                }
+                .into(),
+            ]),
             padding: Some("12px 8px 12px 8px".into()),
         }
         .into();
@@ -638,11 +642,13 @@ impl LarkTemplate for ReportFailureTaskTemplate {
             title: card_title.into(),
             template: "red".into(),
             subtitle: Some("".into()),
-            text_tag_list: Some(vec![TextTag {
-                text: self.t("failure"),
-                color: "red".into(),
-            }
-            .into()]),
+            text_tag_list: Some(vec![
+                TextTag {
+                    text: self.t("failure"),
+                    color: "red".into(),
+                }
+                .into(),
+            ]),
             padding: Some("12px 8px 12px 8px".into()),
         }
         .into();
@@ -715,11 +721,13 @@ impl LarkTemplate for AlertTemplate {
             title: self.title.clone(),
             template: color.into(),
             subtitle: Some(severity_str.clone()),
-            text_tag_list: Some(vec![TextTag {
-                text: severity_str,
-                color: color.into(),
-            }
-            .into()]),
+            text_tag_list: Some(vec![
+                TextTag {
+                    text: severity_str,
+                    color: color.into(),
+                }
+                .into(),
+            ]),
             ..Default::default()
         }
         .into();
@@ -767,25 +775,29 @@ pub(crate) fn storage_columns(
     prefix_value: &str,
 ) -> Value {
     let col1: Value = Column {
-        elements: vec![Markdown {
-            content: format!("**{group_label}**\n{group_value}"),
-            text_align: TextAlign::Center,
-            text_size: TextSize::NormalV2,
-            margin: "0px 4px 0px 4px".into(),
-        }
-        .into()],
+        elements: vec![
+            Markdown {
+                content: format!("**{group_label}**\n{group_value}"),
+                text_align: TextAlign::Center,
+                text_size: TextSize::NormalV2,
+                margin: "0px 4px 0px 4px".into(),
+            }
+            .into(),
+        ],
         width: ColumnWidth::Auto,
         ..Default::default()
     }
     .into();
     let col2: Value = Column {
-        elements: vec![Markdown {
-            content: format!("**{prefix_label}**\n{prefix_value}"),
-            text_align: TextAlign::Center,
-            text_size: TextSize::NormalV2,
-            ..Default::default()
-        }
-        .into()],
+        elements: vec![
+            Markdown {
+                content: format!("**{prefix_label}**\n{prefix_value}"),
+                text_align: TextAlign::Center,
+                text_size: TextSize::NormalV2,
+                ..Default::default()
+            }
+            .into(),
+        ],
         width: ColumnWidth::Weighted,
         weight: Some(1),
         ..Default::default()
@@ -801,12 +813,14 @@ pub(crate) fn storage_columns(
 pub(crate) fn overview_panel(title: &str, content: &str) -> Value {
     CollapsiblePanel {
         title_markdown: format!("**<font color='grey-800'>{title}</font>**"),
-        elements: vec![Markdown {
-            content: content.into(),
-            text_size: TextSize::NormalV2,
-            ..Default::default()
-        }
-        .into()],
+        elements: vec![
+            Markdown {
+                content: content.into(),
+                text_size: TextSize::NormalV2,
+                ..Default::default()
+            }
+            .into(),
+        ],
         expanded: false,
         ..Default::default()
     }
@@ -890,10 +904,12 @@ mod tests {
         assert_eq!(card["type"], "template");
         assert_eq!(card["data"]["template_id"], "AAqz08XD5HCzP");
         assert_eq!(card["data"]["template_variable"]["task_name"], "my-task");
-        assert!(card["data"]["template_variable"]["task_status"]
-            .as_str()
-            .unwrap()
-            .contains("CheckMark"));
+        assert!(
+            card["data"]["template_variable"]["task_status"]
+                .as_str()
+                .unwrap()
+                .contains("CheckMark")
+        );
     }
 
     #[test]
