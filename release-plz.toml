@@ -99,6 +99,7 @@ commit_parsers = [
 [[package]]
 name = "lark-webhook-notify"
 changelog_include = ["lark-webhook-notify-cli"]
+changelog_path = "CHANGELOG.md"
 
 [[package]]
 name = "lark-webhook-notify-cli"
