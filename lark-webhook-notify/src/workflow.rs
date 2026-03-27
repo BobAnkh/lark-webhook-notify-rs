@@ -3,7 +3,7 @@ use std::collections::HashMap;
 
 use crate::blocks::{TextAlign, TextSize};
 use crate::builder::CardBuilder;
-use crate::templates::{get_translation, ColorTheme, GenericCardTemplate, LanguageCode};
+use crate::templates::{ColorTheme, GenericCardTemplate, LanguageCode, get_translation};
 
 /// Progress counters for a single task set, used by [`task_set_progress`].
 pub struct TaskSetProgress {
@@ -172,11 +172,10 @@ pub fn config_upload_complete(
         )
         .markdown(&lines.join("\n"), TextAlign::Left, TextSize::Normal);
 
-    if let Some(lbls) = labels {
-        if !lbls.is_empty() {
+    if let Some(lbls) = labels
+        && !lbls.is_empty() {
             builder = builder.collapsible(&t("uploaded_files"), &lbls.join(","), false);
         }
-    }
     builder.build()
 }
 

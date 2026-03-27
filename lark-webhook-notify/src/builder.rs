@@ -195,12 +195,14 @@ impl CardBuilder {
         self.elements.push(
             CollapsiblePanel {
                 title_markdown: format!("**<font color='grey-800'>{title}</font>**"),
-                elements: vec![Markdown {
-                    content: content.into(),
-                    text_size: TextSize::NormalV2,
-                    ..Default::default()
-                }
-                .into()],
+                elements: vec![
+                    Markdown {
+                        content: content.into(),
+                        text_size: TextSize::NormalV2,
+                        ..Default::default()
+                    }
+                    .into(),
+                ],
                 expanded,
                 ..Default::default()
             }
